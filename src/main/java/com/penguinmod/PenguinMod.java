@@ -13,7 +13,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.penguinmod.ConvertNamespace;
 
 public class PenguinMod implements ModInitializer {
 	public static final String MOD_ID = "penguinmod";
@@ -45,6 +44,7 @@ public class PenguinMod implements ModInitializer {
 		private PMItems() {}
 
 		public static final Item STINKY_ITEM = register("stinky_item", new Item(new Item.Settings()));
+		public static final Item TEST_ITEM = register("minecraft:test_item", new Item(new Item.Settings()));
 
 		public static <T extends Item> T register(String path, T item) {
 			return Registry.register(Registries.ITEM, cn.convertNamespace(path), item);
@@ -61,6 +61,7 @@ public class PenguinMod implements ModInitializer {
 			.entries((context, entries) -> {
 				entries.add(PMItems.STINKY_ITEM);
 				entries.add(PMBlocks.JOE_BLOCK);
+				entries.add(PMItems.TEST_ITEM);
 			})
 			.build();
 
