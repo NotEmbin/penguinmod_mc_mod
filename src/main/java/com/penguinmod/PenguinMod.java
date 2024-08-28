@@ -8,6 +8,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.command.EntityDataObject;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
@@ -22,13 +23,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.predicate.item.CustomDataPredicate;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryOps;
-import net.minecraft.registry.tag.TagBuilder;
-import net.minecraft.registry.tag.TagEntry;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextCodecs;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,8 +69,11 @@ public class PenguinMod implements ModInitializer {
 		public static final Block SHADOWV4ST_BLOCK = register(new Block(AbstractBlock.Settings.create()), "shadowv4st_block", true);
 		public static final Block XENDYEX_BLOCK = register(new Block(AbstractBlock.Settings.create()), "xendyex_block", true);
 		public static final Block TIM_SWEENEY_BLOCK = register(new Block(AbstractBlock.Settings.create()), "tim_sweeney_block", true);
+		public static final Block SUPER_SECRET_BLOCK = register(new Block(AbstractBlock.Settings.copy(Blocks.GLASS)), "super_secret_block", false);
 
-		public static void init() {}
+		public static void init() {
+			LOGGER.info("Creating PenguinMod blocks...");
+		}
 	}
 
 	public final class PMItems {
@@ -88,7 +86,9 @@ public class PenguinMod implements ModInitializer {
 			return Registry.register(Registries.ITEM, cn.convertNamespace(path), item);
 		}
 
-		public static void init() {}
+		public static void init() {
+			LOGGER.info("Creating PenguinMod items...");
+		}
 	}
 
 	public final class PMItemGroups {
@@ -102,7 +102,6 @@ public class PenguinMod implements ModInitializer {
 			.displayName(Text.translatable("itemGroup.penguinmod"))
 			.entries((context, entries) -> {
 				entries.add(PMItems.STINKY_ITEM);
-				entries.add(PMItems.TEST_ITEM);
 				entries.add(PMBlocks.JOE_BLOCK);
 				entries.add(PMBlocks.DDEDEDODEDIAMANTE_BLOCK);
 				entries.add(PMBlocks.PUZZLINGGGG_BLOCK);
@@ -124,6 +123,7 @@ public class PenguinMod implements ModInitializer {
 				entries.add(PMBlocks.SHADOWV4ST_BLOCK);
 				entries.add(PMBlocks.XENDYEX_BLOCK);
 				entries.add(PMBlocks.TIM_SWEENEY_BLOCK);
+				entries.add(PMItems.TEST_ITEM);
 				//entries.add(new ItemStack(Items.PAINTING).set(DataComponentTypes.ENTITY_DATA, NbtComponent.DEFAULT.apply(PaintingVariants.TIDES)));
 
 			})
@@ -149,6 +149,6 @@ public class PenguinMod implements ModInitializer {
 		});
 		*/
 
-		LOGGER.info("Hello Fabric world!");
+		// LOGGER.info("Hello Fabric world!");
 	}
 }

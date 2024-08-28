@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"com.penguinmod.PenguinModClient"
+		],
+		"terrablender": [
+			"com.penguinmod.world.biome.PmTerrablenderAPI"
 		]
 	},
 	"mixins": [
